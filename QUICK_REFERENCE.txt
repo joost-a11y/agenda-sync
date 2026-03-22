@@ -1,0 +1,169 @@
+
+                    AGENDA SYNC - QUICK REFERENCE                           
+
+PROJECT REPO: https://github.com/joost-a11y/agenda-sync
+
+ LOCAL SETUP 
+                                                                             
+ 1. CREATE DATABASE                                                          
+    $ createdb agenda_sync                                                  
+                                                                             
+ 2. BACKEND SETUP                                                            
+    $ cd backend                                                             
+    $ npm install                                                            
+    $ cp .env.example .env  (edit with your database credentials)           
+    $ npm run dev  (runs on http://localhost:5000)                          
+                                                                             
+ 3. FRONTEND SETUP                                                           
+    $ cd frontend                                                            
+    $ npm install                                                            
+    $ npm run dev  (runs on http://localhost:5173)                          
+                                                                             
+
+
+ OAUTH SETUP (5 MIN) 
+                                                                             
+ GOOGLE:                                                                     
+  1. Go to Google Cloud Console                                              
+  2. Create project, enable Calendar API                                     
+  3. Create OAuth credentials (Web app)                                      
+  4. Copy Client ID & Secret to backend/.env                                
+                                                                             
+ MICROSOFT:                                                                  
+ App Registrations                                 
+  2. New registration, add redirect URI                                      
+  3. Create client secret                                                    
+  4. Grant Calendar.ReadWrite permission                                     
+  5. Copy Client ID & Secret to backend/.env                                
+                                                                             
+ See OAUTH_QUICK_START.md for detailed steps                                
+                                                                             
+
+
+ API ENDPOINTS 
+                                                                             
+ AUTH                                                                        
+ POST   /api/auth/register              Create account                      
+ POST   /api/auth/login                 Login with email/password           
+ GET    /api/auth/google/url            Get Google OAuth URL                
+ GET    /api/auth/microsoft/url         Get Microsoft OAuth URL             
+ GET    /api/auth/profile               Get profile (token required)        
+                                                                             
+ SOURCES (all require authentication token)                                 
+ GET    /api/ics/sources                List all sources                    
+ POST   /api/ics/sources                Add new source                      
+ PUT    /api/ics/sources/:id            Update source                       
+ DELETE /api/ics/sources/:id            Delete source                       
+ POST   /api/ics/sync                   Trigger manual sync                 
+ GET    /api/ics/logs                   View sync logs                      
+                                                                             
+
+
+ DEPLOYMENT 
+                                                                             
+ BACKEND (Railway - Recommended):                                            
+  1. Go to railway.app                                                       
+  2. Import GitHub repo                                                      
+  3. Set environment variables                                               
+  4. Deploy! (auto-redeploy on git push)                                    
+                                                                             
+ FRONTEND (Vercel):                                                          
+  1. Go to vercel.com                                                        
+  2. Import GitHub repo (select frontend folder)                             
+  3. Set VITE_API_URL environment variable                                  
+  4. Deploy! (auto-redeploy on git push)                                    
+                                                                             
+ See DEPLOYMENT.md for full instructions                                    
+                                                                             
+
+
+ ENVIRONMENT VARIABLES 
+                                                                             
+ BACKEND (.env)                                                              
+ PORT=5000                                                                   
+ NODE_ENV=development                                                        
+ DB_HOST=localhost                                                           
+ DB_PORT=5432                                                                
+ DB_NAME=agenda_sync                                                         
+ DB_USER=postgres                                                            
+ DB_PASSWORD=your_password                                                   
+ JWT_SECRET=your_random_secret                                              
+ GOOGLE_CLIENT_ID=xxx                                                        
+ GOOGLE_CLIENT_SECRET=xxx                                                    
+ GOOGLE_REDIRECT_URI=http://localhost:5000/api/auth/google/callback        
+ MICROSOFT_CLIENT_ID=xxx                                                     
+ MICROSOFT_CLIENT_SECRET=xxx                                                 
+ MICROSOFT_REDIRECT_URI=http://localhost:5000/api/auth/microsoft/callback  
+ FRONTEND_URL=http://localhost:3000                                          
+                                                                             
+ FRONTEND (.env.local)                                                       
+ VITE_API_URL=http://localhost:5000/api                                     
+                                                                             
+
+
+ DOCUMENTATION 
+                                                                             
+ Project overview & features                        
+ Local development setup                           
+ System design & data model                        
+ Detailed OAuth configuration                      
+ 5-minute OAuth setup                              
+ Backend API reference                             
+ Frontend development guide                        
+ Production deployment                             
+ What's been built & next steps                   
+                                                                             
+
+
+ TECH STACK 
+                                                                             
+ FRONTEND:  React 18, Vite, Zustand, React Router, Axios                   
+ BACKEND:   Express.js, PostgreSQL, JWT, Passport                          
+ APIS:      Google Calendar v3, Microsoft Graph v1.0                       
+ ICS:       ical.js                                                          
+                                                                             
+
+
+ COMMON COMMANDS 
+                                                                             
+ Backend:                                                                    
+  npm run dev      Run development server (with hot reload)                 
+  npm start        Run production server                                     
+                                                                             
+ Frontend:                                                                   
+  npm run dev      Run development server (with hot reload)                 
+  npm run build    Build for production                                      
+  npm run preview  Preview production build locally                          
+                                                                             
+ Database:                                                                   
+  createdb agenda_sync           Create database                            
+  dropdb agenda_sync             Drop database                              
+  psql -U postgres agenda_sync   Connect to database                        
+                                                                             
+ Git:                                                                        
+  git add .                      Stage all changes                          
+  git commit -m "message"        Commit changes                             
+  git push origin main           Push to GitHub                             
+  git pull origin main           Pull from GitHub                           
+                                                                             
+
+
+NEED HELP?
+  1. Check documentation files
+  2. Review error logs in terminal
+  3. Search GitHub issues
+  4. Check OAUTH_SETUP.md for OAuth issues
+  5. Review DEPLOYMENT.md for deployment issues
+
+READY TO DEPLOY?
+  1. Test locally 
+  2. Set up OAuth 
+  3. Create Railway/Heroku account
+  4. Deploy backend
+  5. Deploy frontend
+  6. Test production OAuth flow
+  7. Monitor and scale
+
+QUESTIONS? See IMPLEMENTATION_SUMMARY.md for complete reference!
+
+
