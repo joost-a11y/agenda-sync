@@ -5,11 +5,13 @@ import { authService } from './services/api';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import OAuthLogin from './pages/OAuthLogin';
+import OAuthCallback from './pages/OAuthCallback';
 import Dashboard from './pages/Dashboard';
 
 function PrivateRoute({ children }) {
   const token = useAuthStore((state) => state.token);
-  return token ? children : <Navigate to="/login" />;
+  return token ? children : <Navigate to="/oauth-login" />;
 }
 
 export default function App() {
@@ -29,6 +31,8 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/oauth-login" element={<OAuthLogin />} />
+        <Route path="/oauth-callback" element={<OAuthCallback />} />
         <Route
           path="/dashboard"
           element={

@@ -20,9 +20,6 @@ initializeDatabase().catch((error) => {
 });
 
 // Routes
-app.post('/api/auth/register', authRoutes.post);
-app.post('/api/auth/login', authRoutes.post);
-
 app.use('/api/auth', authRoutes);
 app.use('/api/ics', authenticateToken, icsRoutes);
 
